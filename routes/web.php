@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\HistoriaController;
+use App\Http\Controllers\FaltaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::resource('/Vehiculo' , 'App\Http\Controllers\VehiculoController');
-    Route::get('/Vehiculo/{id}/activo' , 'App\Http\Controllers\VehiculoController@activo');
-    Route::get('/Vehiculo/{id}/popular' , 'App\Http\Controllers\VehiculoController@popular');
-});
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/Tienda/{busqueda}/Marca', [App\Http\Controllers\HomeController::class, 'show'])->name('home');
-
-Route::get('/Tienda/{id}' , 'App\Http\Controllers\VehiculoController@show');
-Route::get('/Tienda' , 'App\Http\Controllers\VehiculoController@tienda');
+Route::resource('personas', PersonaController::class);
+Route::resource('cargos', CargoController::class);
+Route::resource('horarios', HorarioController::class);
+Route::resource('historias', HistoriaController::class);
+Route::resource('faltas', FaltaController::class);
