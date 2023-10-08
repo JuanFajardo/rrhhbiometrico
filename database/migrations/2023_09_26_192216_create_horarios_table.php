@@ -17,7 +17,7 @@ class CreateHorariosTable extends Migration
             $table->id();
             $table->integer('id_usuario');
             $table->string('horario');
-            $table->text('descripcion')->default('')->nullable->comment('Nose');
+            $table->text('descripcion')->default('')->nullable();
             $table->time('ingresoam')->default('00:00')->nullable();
             $table->time('salidaam')->default('00:00')->nullable();
             $table->time('ingresopm')->default('00:00')->nullable();

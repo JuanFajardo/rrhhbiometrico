@@ -19,7 +19,7 @@ use App\Http\Controllers\FaltaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('yesica');
 });
 
 Auth::routes();
