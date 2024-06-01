@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dashboard V.1 | Nalika - Material Admin Template</title>
+    <title>YEsica Lopez | Nalika - Material Admin Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google Fonts
@@ -67,6 +67,7 @@
         <![endif]-->
 
     @include('menu')
+    
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
         <div class="container-fluid">
@@ -112,7 +113,13 @@
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
                                                         </li>
-                                                        <li><a href="login.html"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
+
+                                                        <li>
+                                                          <a class="dropdown-item"  href="{{asset('index.php/logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                            <span class="icon nalika-unlocked author-log-ic"></span> Cerrar Sesion</a>
+                                                            <form id="logout-form" action="{{asset('index.php/logout')}}" method="POST" class="d-none">
+                                                              @csrf 
+                                                            </form>
                                                         </li>
                                                     </ul>
                                                 </li>

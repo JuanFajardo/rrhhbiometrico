@@ -19,22 +19,22 @@
                         <a class="has-arrow" href="{{asset('index.php/personas')}}" aria-expanded="false"><i class="icon nalika-user icon-wrap"></i><span class="mini-click-non">Usuario</span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Personal</span></a>
+                        <a class="has-arrow" href="{{asset('index.php/personas')}}" aria-expanded="false"><i class="icon nalika-user icon-wrap"></i> <span class="mini-click-non">Personal</span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-suitcase icon-wrap"></i> <span class="mini-click-non">Cargos </span></a>
+                        <a class="has-arrow" href="{{asset('index.php/cargos')}}" aria-expanded="false"><i class="icon nalika-home icon-wrap"></i> <span class="mini-click-non">Cargos </span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-pie-chart icon-wrap"></i> <span class="mini-click-non">Horarios</span></a>
+                        <a class="has-arrow" href="{{asset('index.php/horarios')}}" aria-expanded="false"><i class="icon nalika-pie-chart icon-wrap"></i> <span class="mini-click-non">Horarios</span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-bar-chart icon-wrap"></i> <span class="mini-click-non">Historial</span></a>
+                        <a class="has-arrow" href="{{asset('index.php/historias')}}" aria-expanded="false"><i class="icon nalika-bar-chart icon-wrap"></i> <span class="mini-click-non">Historial</span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-table icon-wrap"></i> <span class="mini-click-non">Permisos</span></a>
+                        <a class="has-arrow" href="{{asset('index.php/faltas')}}" aria-expanded="false"><i class="icon nalika-table icon-wrap"></i> <span class="mini-click-non">Permisos</span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-forms icon-wrap"></i> <span class="mini-click-non">Reportes</span></a>
+                        <a class="has-arrow" href="{{asset('index.php/personas')}}" aria-expanded="false"><i class="icon nalika-forms icon-wrap"></i> <span class="mini-click-non">Reportes</span></a>
                     </li>
                     
                     

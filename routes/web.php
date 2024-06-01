@@ -18,13 +18,22 @@ use App\Http\Controllers\FaltaController;
 |
 */
 
-Route::get('/', function () {
-    return view('yesica');
-});
+
 
 Auth::routes();
-Route::resource('personas', PersonaController::class);
-Route::resource('cargos', CargoController::class);
-Route::resource('horarios', HorarioController::class);
-Route::resource('historias', HistoriaController::class);
-Route::resource('faltas', FaltaController::class);
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/', function () {
+        return view('yesica');
+    });
+    
+    Route::resource('personas', PersonaController::class);
+    Route::get('personas/{id}/activo', 'App\Http\Controllers\PersonaController@destroy')->name('persona.activo');
+
+    Route::resource('cargos', CargoController::class);
+    Route::resource('horarios', HorarioController::class);
+    Route::resource('historias', HistoriaController::class);
+    Route::resource('faltas', FaltaController::class);
+});
+

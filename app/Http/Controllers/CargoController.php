@@ -10,8 +10,8 @@ class CargoController extends Controller
     public function index()
     {
         // Obtener todos los cargos
-        $cargos = Cargo::all();
-        return view('cargos.index', compact('cargos'));
+        $datos = Cargo::all();
+        return view('cargos.index', compact('datos'));
     }
 
     public function create()
@@ -26,8 +26,7 @@ class CargoController extends Controller
             'cargo' => 'required',
             // Agregar más reglas de validación según tus necesidades
         ]);
-
-        // Crear un nuevo cargo
+        $request['id_usuario'] = 1;
         Cargo::create($request->all());
 
         // Redireccionar a la lista de cargos
@@ -37,8 +36,8 @@ class CargoController extends Controller
 
     public function edit($id)
     {
-        $cargo = Cargo::find($id);
-        return view('cargos.edit', compact('cargo'));
+        $dato = Cargo::find($id);
+        return view('cargos.edit', compact('dato'));
     }
 
     public function update(Request $request, $id)
@@ -46,25 +45,16 @@ class CargoController extends Controller
         // Validación de datos
         $request->validate([
             'cargo' => 'required',
-            // Agregar más reglas de validación según tus necesidades
         ]);
-
-        // Actualizar el cargo
+        $request['id_usuario'] = 1;
         Cargo::where('id', $id)->update($request->except('_token', '_method'));
-
-        // Redireccionar a la lista de cargos
         return redirect()->route('cargos.index')
             ->with('success', 'Cargo actualizado correctamente');
     }
 
-    public function destroy($id)
-    {
-        // Eliminar el cargo
-        Cargo::destroy($id);
-
-        // Redireccionar a la lista de cargos
-        return redirect()->route('cargos.index')
-            ->with('success', 'Cargo eliminado correctamente');
+    public function destroy($id){
+        //Cargo::destroy($id);
+        //return redirect()->route('cargos.index') ->with('success', 'Cargo eliminado correctamente');
     }
 
 }

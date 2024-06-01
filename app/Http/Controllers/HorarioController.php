@@ -10,8 +10,8 @@ class HorarioController extends Controller
     public function index()
     {
         // Obtener todos los horarios
-        $horarios = Horario::all();
-        return view('horarios.index', compact('horarios'));
+        $datos = Horario::all();
+        return view('horarios.index', compact('datos'));
     }
 
     public function create()
@@ -19,26 +19,22 @@ class HorarioController extends Controller
         return view('horarios.create');
     }
 
-    public function store(Request $request)
-    {
-        // Validación de datos
+    public function store(Request $request){
         $request->validate([
             'horario' => 'required',
-            // Agregar más reglas de validación según tus necesidades
         ]);
 
-        // Crear un nuevo horario
+        $request['id_usuario'] = 1;
         Horario::create($request->all());
 
-        // Redireccionar a la lista de horarios
         return redirect()->route('horarios.index')
             ->with('success', 'Horario creado correctamente');
     }
 
     public function edit($id)
     {
-        $horario = Horario::find($id);
-        return view('horarios.edit', compact('horario'));
+        $dato = Horario::find($id);
+        return view('horarios.edit', compact('dato'));
     }
 
     public function update(Request $request, $id)
@@ -49,7 +45,7 @@ class HorarioController extends Controller
             // Agregar más reglas de validación según tus necesidades
         ]);
 
-        // Actualizar el horario
+        $request['id_usuario'] = 1;
         Horario::where('id', $id)->update($request->except('_token', '_method'));
 
         // Redireccionar a la lista de horarios

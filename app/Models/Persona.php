@@ -22,5 +22,5 @@ class Persona extends Model
         'direccion',
         'activo',
     ];
-    
+   
 }
