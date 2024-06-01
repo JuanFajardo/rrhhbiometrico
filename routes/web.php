@@ -6,6 +6,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\FaltaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('horarios', HorarioController::class);
     Route::resource('historias', HistoriaController::class);
     Route::resource('faltas', FaltaController::class);
+    Route::resource('usuarios', UserController::class);
 });
 

@@ -16,7 +16,7 @@
                 <ul class="metismenu" id="menu1">
                     
                     <li class="active">
-                        <a class="has-arrow" href="{{asset('index.php/personas')}}" aria-expanded="false"><i class="icon nalika-user icon-wrap"></i><span class="mini-click-non">Usuario</span></a>
+                        <a class="has-arrow" href="{{asset('index.php/usuarios')}}" aria-expanded="false"><i class="icon nalika-user icon-wrap"></i><span class="mini-click-non">Usuario</span></a>
                     </li>
                     <li>
                         <a class="has-arrow" href="{{asset('index.php/personas')}}" aria-expanded="false"><i class="icon nalika-user icon-wrap"></i> <span class="mini-click-non">Personal</span></a>
