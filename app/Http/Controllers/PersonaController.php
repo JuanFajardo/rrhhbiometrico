@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Persona;
-
+use App\Models\Cargo;
+use App\Models\Horario;
 
 class PersonaController extends Controller
 {
@@ -17,8 +18,10 @@ class PersonaController extends Controller
 
     public function show($id)
     {
+        $cargos    = Cargo::all();
+        $horarios  = Horario::all();
         $dato = Persona::find($id);
-        return view('personas.view', compact('dato'));
+        return view('personas.view', compact('dato', 'cargos', 'horarios' ));
     }
 
     public function create()
@@ -28,26 +31,24 @@ class PersonaController extends Controller
 
     public function store(Request $request)
     {
-        // Validación de datos
         $request->validate([
             'nombre' => 'required',
             'paterno' => 'required',
-            // Agregar más reglas de validación según tus necesidades
         ]);
 
-        // Crear una nueva persona
         $request['id_usuario'] = 1;
         $request['activo'] = 1;
         Persona::create($request->all());
-
-        // Redireccionar a la lista de personas
+        
         return redirect()->route('personas.index')
             ->with('success', 'Persona creada correctamente');
     }
 
     public function edit($id){
+        $cargos    = Cargo::all();
+        $horarios  = Horario::all();
         $dato = Persona::find($id);
-        return view('personas.edit', compact('dato'));
+        return view('personas.edit', compact('dato', 'cargos', 'horarios' ));
     }
 
     public function update(Request $request, $id){

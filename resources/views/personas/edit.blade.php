@@ -62,15 +62,17 @@
                             </div>
 
                             <select name="id_cargo" class="form-control pro-edt-select form-control-primary" required>
-							    <option value="">Escoger Cargo</option>
-								<option value="2">2</option>
+                                @foreach($cargos as $cargo)
+                                    <option value="{{$cargo->cargo}}" {{ $dato->id_cargo == $cargo->id ? 'selected' : '' }}> {{$cargo->cargo}}</option>    
+                                @endforeach
 							</select>
 
                             <br/>
 
                             <select name="id_horario" class="form-control pro-edt-select form-control-primary" required>
-							    <option value="">Escoger Horario</option>
-								<option value="2">2</option>
+                                @foreach($horarios as $horario)
+                                    <option value="{{$horario->horario}}" {{ $dato->id_horario == $horario->id ? 'selected' : '' }}> {{$horario->horario}}</option>    
+                                @endforeach
 							</select>
 
                         </div>
