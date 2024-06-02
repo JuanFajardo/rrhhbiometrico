@@ -75,6 +75,18 @@
                                 @endforeach
 							</select>
 
+                            <hr>
+
+                            <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="id_biometrico" placeholder="Nro Biometrico" required>
+                            </div>
+
+                            <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="nombre_biometrico" placeholder="Nombre Biometrico" required>
+                            </div>
+
                         </div>
                     </div>
 

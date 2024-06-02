@@ -14,6 +14,8 @@ class Persona extends Model
         'id_usuario',
         'id_cargo',
         'id_horario',
+        'id_biometrico',
+        'nombre_biometrico',
         'nombre',
         'paterno',
         'materno',

@@ -58,17 +58,30 @@
                             </div>
 
                             <select name="id_cargo" class="form-control pro-edt-select form-control-primary" required>
-							    <option value="">Escoger Cargo</option>
-								<option value="2">2</option>
+                                @foreach($cargos as $cargo)
+                                    <option value="{{$cargo->id}}" > {{$cargo->cargo}}</option>    
+                                @endforeach
 							</select>
 
                             <br/>
 
                             <select name="id_horario" class="form-control pro-edt-select form-control-primary" required>
-							    <option value="">Escoger Horario</option>
-								<option value="2">2</option>
-								
+                                @foreach($horarios as $horario)
+                                    <option value="{{$horario->id}}" > {{$horario->horario}}</option>    
+                                @endforeach
 							</select>
+
+                            <hr>
+
+                            <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="id_biometrico" placeholder="Nro Biometrico" required>
+                            </div>
+
+                            <div class="input-group mg-b-pro-edt">
+                                <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="nombre_biometrico" placeholder="Nombre Biometrico" required>
+                            </div>
 
                         </div>
                     </div>

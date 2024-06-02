@@ -15,6 +15,9 @@ class CreatePersonasTable extends Migration
             $table->integer('id_cargo');
             $table->integer('id_horario');
 
+            $table->integer('id_biometrico');
+            $table->string('nombre_biometrico');
+
             $table->string('nombre')->default('')->nullable();
             $table->string('paterno')->default('')->nullable();
             $table->string('materno')->default('')->nullable();

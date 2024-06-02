@@ -10,7 +10,7 @@
                 <th>Activo</th>
                 <th>CI</th>
                 <th>Nombre Completo</th>
-                <th>Cargo</th>
+                <th>Biometrico</th>
                 <th>Acciones</th>
             </tr>
             @foreach($datos as $dato)
@@ -24,12 +24,11 @@
                     </td>
                     <td>{{$dato->ci}}</td>
                     <td>{{$dato->materno}} {{$dato->paterno}} {{$dato->nombre}}</td>
-                    <td>{{$dato->id_cargo}}</td>
+                    <td>{{$dato->id_biometrico}}</td>
 
                     <td>
                         <a href="{{asset('index.php/personas/'.$dato->id.'/edit')}}"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px"></i> </a>
                         <a href="{{asset('index.php/personas/'.$dato->id)}}"> <i class="fa fa-eyefa fa-eye" aria-hidden="true" style="font-size:22px"></i> </a>
-                        
                     </td>
 
                 </tr>

@@ -26,7 +26,10 @@ class PersonaController extends Controller
 
     public function create()
     {
-        return view('personas.create');
+        $cargos    = Cargo::all();
+        $horarios  = Horario::all();
+        
+        return view('personas.create', compact('cargos', 'horarios' ));
     }
 
     public function store(Request $request)
