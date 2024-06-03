@@ -11,18 +11,25 @@ class Historia extends Model
 
     protected $table = 'historias';
     protected $fillable = [
-        'id_usuario',
-        'id_persona',
-        'id_horario',
-        'id_cargo',
-        'id_falta',
-        'fecha',
-        'ingresoam',
-        'salidaam',
-        'ingresopm',
-        'salidapm',
-        'retrazo',
-        'observacion',
-        'aceptado',
+        //'id',
+            'id_usuario',
+            'id_persona',
+            'persona',
+            'id_horario',
+                'horario',
+                'id_cargo',
+                'cargo',
+                'id_falta',
+                'falta',
+                'id_biometrico',
+                'nombre_biometrico',
+                'fecha',
+                'ingresoam',
+                'salidaam',
+                'ingresopm',
+                'salidapm',
+                'retrazo',
+                'observacion',
+                'aceptado'
     ];
 }

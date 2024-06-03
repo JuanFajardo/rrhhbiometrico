@@ -35,6 +35,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('cargos', CargoController::class);
     Route::resource('horarios', HorarioController::class);
     Route::resource('historias', HistoriaController::class);
+    Route::post('historia/cargado', [HistoriaController::class, 'cargado'])->name('historial.cargado');
+    Route::post('historia/reporte', [HistoriaController::class, 'reporte'])->name('historial.reporte');
+    
+    
     Route::resource('faltas', FaltaController::class);
     Route::resource('usuarios', UserController::class);
 });

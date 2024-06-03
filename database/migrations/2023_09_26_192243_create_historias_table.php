@@ -16,17 +16,24 @@ class CreateHistoriasTable extends Migration
         Schema::create('historias', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('id_usuario');
-            $table->integer('id_persona');
-            $table->integer('id_horario');
-            $table->integer('id_cargo');
-            $table->integer('id_falta');
+            $table->integer('id_usuario')->nullable();
+            $table->integer('id_persona')->nullable();
+            $table->string('persona')->nullable();
+            $table->integer('id_horario')->nullable();
+            $table->string('horario')->nullable();
+            $table->integer('id_cargo')->nullable();
+            $table->string('cargo')->nullable();
+            $table->integer('id_falta')->nullable();
+            $table->string('falta')->nullable();
+
+            $table->string('id_biometrico');
+            $table->string('nombre_biometrico');
 
             $table->datetime('fecha');
-            $table->time('ingresoam')->default('00:00')->nullable();
-            $table->time('salidaam')->default('00:00')->nullable();
-            $table->time('ingresopm')->default('00:00')->nullable();
-            $table->time('salidapm')->default('00:00')->nullable();
+            $table->string('ingresoam')->default('00:00')->nullable();
+            $table->string('salidaam')->default('00:00')->nullable();
+            $table->string('ingresopm')->default('00:00')->nullable();
+            $table->string('salidapm')->default('00:00')->nullable();
             $table->integer('retrazo')->default('0')->nullable();
             $table->text('observacion')->default('')->nullable();
             $table->boolean('aceptado')->comment('si/no')->default(false);
@@ -45,3 +52,4 @@ class CreateHistoriasTable extends Migration
         Schema::dropIfExists('historias');
     }
 }
+
