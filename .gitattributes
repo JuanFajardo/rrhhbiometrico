@@ -3,6 +3,7 @@
 
 # Ignorar archivos JavaScript para la detección de lenguaje
 *.js linguist-detectable=false
+*.css linguist-detectable=false
 
 public/js/* linguist-detectable=false
 
