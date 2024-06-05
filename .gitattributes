@@ -1,3 +1,11 @@
+# Resaltar archivos PHP
+*.php linguist-language=PHP
+
+# Ignorar archivos JavaScript para la detección de lenguaje
+*.js linguist-detectable=false
+
+public/js/* linguist-detectable=false
+
 * text=auto
 
 *.blade.php diff=html
@@ -8,3 +16,4 @@
 
 /.github export-ignore
 CHANGELOG.md export-ignore
+
