@@ -4,34 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Falta;
+use App\Models\Persona;
 
 class FaltaController extends Controller
 {
     public function index()
     {
         // Obtener todas las faltas
-        $faltas = Falta::all();
-        return view('faltas.index', compact('faltas'));
+        $datos = Falta::all();
+        return view('faltas.index', compact('datos'));
     }
 
     public function create()
     {
-        return view('faltas.create');
+        $personas = Persona::all();
+        return view('faltas.create', compact('personas'));
     }
 
     public function store(Request $request)
-    {
-        // Validación de datos
-        $request->validate([
-            // Agregar reglas de validación según tus necesidades
-        ]);
-
-        // Crear una nueva falta
+    {   //return $request->all();
+        $id = $request->id_persona;
+        $request['id_usuario']= \Auth::user()->id;
+        if ( $id == "0" )
+            $nombre= "Todos";
+        else 
+            $nombre= $this->persona($id);
+        $request['persona'] = $nombre;
         Falta::create($request->all());
 
-        // Redireccionar a la lista de faltas
         return redirect()->route('faltas.index')
             ->with('success', 'Falta creada correctamente');
+    }
+    public function persona($id){
+        $dato = Persona::find($id);
+        return $dato->nombre." ".$dato->paterno." ".$dato->materno;
     }
 
     public function edit($id)
@@ -47,10 +53,7 @@ class FaltaController extends Controller
             // Agregar reglas de validación según tus necesidades
         ]);
 
-        // Actualizar la falta
         Falta::where('id', $id)->update($request->except('_token', '_method'));
-
-        // Redireccionar a la lista de faltas
         return redirect()->route('faltas.index')
             ->with('success', 'Falta actualizada correctamente');
     }

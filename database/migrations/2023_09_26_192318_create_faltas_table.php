@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFaltasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('faltas', function (Blueprint $table) {
@@ -18,26 +13,23 @@ class CreateFaltasTable extends Migration
             
             $table->integer('id_usuario');
             $table->integer('id_persona');
-            $table->integer('id_horario');
-            $table->integer('id_cargo');
+            $table->string('persona');
+            $table->string('falta');
 
             $table->datetime('fecha');
             $table->time('ingresoam')->default('00:00')->nullable();
             $table->time('salidaam')->default('00:00')->nullable();
             $table->time('ingresopm')->default('00:00')->nullable();
             $table->time('salidapm')->default('00:00')->nullable();
-            $table->string('tipo')->default('falta')->nullable()->comment('falta,atraso,permiso');
+            $table->string('accion')->default('falta')->nullable()->comment('falta, atraso, permiso, feriado');
             $table->text('observacion')->default('')->nullable();
-
+            $table->string('tipo')->default('personal')->nullable()->comment('personal,todo');
+            $table->string('aprobado')->default('no')->nullable()->comment('no,si');
+            //Justina 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('faltas');

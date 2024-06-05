@@ -13,14 +13,16 @@ class Falta extends Model
     protected $fillable = [
         'id_usuario',
         'id_persona',
-        'id_horario',
-        'id_cargo',
+        'persona',
+        'falta',
         'fecha',
         'ingresoam',
         'salidaam',
         'ingresopm',
         'salidapm',
-        'tipo',
+        'accion',
         'observacion',
+        'tipo',
+        'aprobado'
     ];
 }
