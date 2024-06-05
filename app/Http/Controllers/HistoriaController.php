@@ -134,6 +134,7 @@ class HistoriaController extends Controller
                 'id_cargo'   => $persona->id_cargo,
                 'cargo'      => $persona->cargo,
             ];
+            
             Historia::where('id_biometrico', $persona->id_biometrico)->update($valores);
         }
         return redirect('historias');

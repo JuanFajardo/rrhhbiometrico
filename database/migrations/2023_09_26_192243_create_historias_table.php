@@ -26,7 +26,7 @@ class CreateHistoriasTable extends Migration
             $table->integer('id_falta')->nullable();
             $table->string('falta')->nullable();
 
-            $table->string('id_biometrico');
+            $table->integer('id_biometrico');
             $table->string('nombre_biometrico');
 
             $table->datetime('fecha');
