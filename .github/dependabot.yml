@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "composer" # Ecosistema de paquetes de Composer
+    directory: "/" # Directorio donde está ubicado tu archivo composer.json
+    schedule:
+      interval: "weekly" # Programa de actualizaciones (puede ser daily, weekly o monthly)
+  - package-ecosystem: "github-actions" # Para mantener actualizadas las acciones de GitHub
+    directory: "/" # Directorio donde están tus workflows de GitHub Actions
+    schedule:
+      interval: "weekly" # Programa de actualizaciones (puede ser daily, weekly o monthly)
