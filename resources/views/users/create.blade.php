@@ -2,13 +2,13 @@
 
 
 @section('cuerpo')
-<div class="page-title">
-    <div class="title_left">
-        <h3>Crear Usuario</h3>
+<h4>Usuarios</h4>
+    <div class="add-product">
+        <a href="{{asset('index.php/usuarios')}}">Lista</a>
     </div>
+        
+<div class="page-title">
     <div class="title_rigth">
-        <h3>
-            <a href="{{ route('usuarios.index') }}" class="btn btn-primary"> <i class="fa fa-backward"></i> </a>
             @if ($errors->any())
                 <div>
                     <strong>Error de validación:</strong>
@@ -19,51 +19,59 @@
                     </ul>
                 </div>
             @endif
-        </h3>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12 col-sm-12 ">
-        <div class="x_panel">
-            <div class="x_content">
-            <form method="POST" action="{{ route('usuarios.store') }}" enctype="multipart/form-data">
-                @csrf
+<ul id="myTab3" class="tab-review-design">
+    <li class="active"><a href=""><i class="icon nalika-edit" aria-hidden="true"></i> Nuevo Usuario </a></li>
+</ul>
 
-                <div class="row">
-                <div class="col">
-                        <label for="name">Nombre Completo</label>
-                        <input type="text" id="name" name="name" value="{{ old('name') }}" required  class="form-control">
+<form method="POST" action="{{ route('usuarios.store') }}" enctype="multipart/form-data">
+@csrf
+
+<div id="myTabContent" class="tab-content custom-product-edit">
+    <div class="product-tab-list tab-pane fade active in" id="description">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
+                <div class="review-content-section">
+                            
+                    <div class="input-group mg-b-pro-edt">
+                        <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
+                        <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" required  placeholder="Nombre Completo">
                     </div>
-
-                    <div class="col">
-                        <label for="email">Usuario</label>
-                        <input type="text" id="email" name="email" value="{{ old('email') }}" required  class="form-control">
+                                
+                    <div class="input-group mg-b-pro-edt">
+                        <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
+                        <input type="text" id="email" name="email" value="{{ old('email') }}" required  class="form-control"  placeholder="usuario@betanzos.com">
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <label for="password">Contraseña</label>
-                        <input type="text" id="password" name="password" value="{{ old('password') }}" required  class="form-control">
+                            
+                    <div class="input-group mg-b-pro-edt">
+                        <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
+                        <input type="text" id="password" name="password" value="{{ old('password') }}" required  class="form-control" placeholder="Contraseña">
                     </div>
-
-                    <div class="col">
-                        <label for="tipo">Tipo</label>
+                            
+                    <div class="input-group mg-b-pro-edt">
+                        <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
                         <select name="tipo" id="tipo" required  class="form-control">
                             <option value="administrador">Administrador</option>
                             <option value="usuario">Usuario</option>
                             <option value="reporte">Reporte</option>
                         </select>
                     </div>
+                            
                 </div>
-                
-                <br/><br/>
-                <button type="submit" class="btn btn-primary">Crear Mesa</button>
-            </form>
-                
             </div>
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="text-center custom-pro-edt-ds">
+            <button type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10"> Crear Usuario</button>
+        </div>
+    </div>
+</div>
+</form>               
+      
 @stop

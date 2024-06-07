@@ -3,7 +3,7 @@
 @section('cuerpo')
     <h4>Cargos</h4>
     <div class="add-product">
-        <a href="{{asset('index.php/personas')}}">Lista</a>
+        <a href="{{asset('index.php/cargos')}}">Lista</a>
     </div>
         
     <ul id="myTab3" class="tab-review-design">
