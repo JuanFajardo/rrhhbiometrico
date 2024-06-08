@@ -25,53 +25,36 @@ class HistoriaController extends Controller
 
     public function store(Request $request)
     {
-        // Validación de datos
         $request->validate([
             // Agregar reglas de validación según tus necesidades
         ]);
-
-        // Crear una nueva historia
         Historia::create($request->all());
-
-        // Redireccionar a la lista de historias
         return redirect()->route('historias.index')
             ->with('success', 'Historia creada correctamente');
     }
 
     public function show($id)
     {
-        $datos = Historia::Where('id_persona', $id)->get();
-        //return $datos;
+        $datos = Historia::Where('id_persona', $id)->orderBy('fecha', 'desc')->get();
         return view('historias.view', compact('datos'));
     }
 
     public function edit($id)
     {
-        $historia = Historia::Where('$id');
-        return view('historias.edit', compact('historia'));
+        $dato = Historia::find($id);
+        return view('historias.edit', compact('dato'));
     }
 
     public function update(Request $request, $id)
     {
-        // Validación de datos
-        $request->validate([
-            // Agregar reglas de validación según tus necesidades
-        ]);
-
-        // Actualizar la historia
         Historia::where('id', $id)->update($request->except('_token', '_method'));
-
-        // Redireccionar a la lista de historias
-        return redirect()->route('historias.index')
-            ->with('success', 'Historia actualizada correctamente');
+        return redirect()->route('historias.edit', $id)
+            ->with('success', 'Horas actualizados correctamente');
     }
 
     public function destroy($id)
     {
-        // Eliminar la historia
         Historia::destroy($id);
-
-        // Redireccionar a la lista de historias
         return redirect()->route('historias.index')
             ->with('success', 'Historia eliminada correctamente');
     }
