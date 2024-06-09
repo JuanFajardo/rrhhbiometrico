@@ -9,17 +9,12 @@ use App\Http\Controllers\FaltaController;
 use App\Http\Controllers\UserController;
 
 /*
-|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
 */
-
-
 
 Auth::routes();
 
@@ -38,8 +33,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('historia/cargado', [HistoriaController::class, 'cargado'])->name('historial.cargado');
     Route::post('historia/reporte', [HistoriaController::class, 'reporte'])->name('historial.reporte');
     
-    
     Route::resource('faltas', FaltaController::class);
+    Route::get('faltas/{id}/activo', [FaltaController::class, 'activo'])->name('faltas.activo');
     Route::resource('usuarios', UserController::class);
+
+    Route::get('usuario/cambiar', [UserController::class, 'clave'] )->name('usuario.cambiar');
+    Route::post('usuario/cambiar', [UserController::class, 'cambiar'] )->name('usuario.clave');
 });
 

@@ -23,9 +23,9 @@
                 <td>{{$dato->tipo}}</td>
                 <td>
                         @if($dato->aprobado == "si")
-                        <a href="{{asset('index.php/personas/'.$dato->id.'/activo')}}" class="pd-setting">Aprobado</a>                    
+                        <a href="{{asset('index.php/faltas/'.$dato->id.'/activo')}}" class="pd-setting">Aprobado</a>                    
                         @else
-                        <a href="{{asset('index.php/personas/'.$dato->id.'/activo')}}" class="ds-setting">Rechazado</a>
+                        <a href="{{asset('index.php/faltas/'.$dato->id.'/activo')}}" class="ds-setting">Rechazado</a>
                         @endif
                 </td>
                     <td>

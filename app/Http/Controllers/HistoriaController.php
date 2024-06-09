@@ -68,60 +68,94 @@ class HistoriaController extends Controller
         $f = fopen($ruta, 'r');
         $datos = fread($f, filesize($ruta));
         $filas = explode("\n", $datos);
+        
         foreach($filas as $fila){
             $columnas = explode(',', $fila);
             if (count($columnas) < 13) {
                 continue; 
             }
+            
             try {
                 $date = \DateTime::createFromFormat( 'm/d/Y', $columnas[2] );
                 $fecha = $date->format('Y-m-d');
-                Historia::create([
-                    'id_usuario' => '0',
-                    'id_persona' => '0',
-                    'persona'    => '0',
-                    'id_horario' => '0',
-                    'horario'    => '0',
-                    'id_cargo'   => '0',
-                    'cargo'      => '0',
-                    'id_falta'   => '0',
-                    'falta'      => '0',
+                
+                $registro_existente = Historia::where('fecha', $fecha)
+                                        ->where('id_biometrico', $columnas[0])->exists();
+                if(!$registro_existente){
+                    Historia::create([
+                        'id_usuario' => '0',
+                        'id_persona' => '0',
+                        'persona'    => '0',
+                        'id_horario' => '0',
+                        'horario'    => '0',
+                        'id_cargo'   => '0',
+                        'cargo'      => '0',
+                        'id_falta'   => '0',
+                        'falta'      => '0',
+                        'id_biometrico' => $columnas[0],
+                        'nombre_biometrico' => $columnas[1],
+                        'fecha' => $fecha,
+                        'ingresoam' => $columnas[4],
+                        'salidaam'  => $columnas[5],
+                        'ingresopm' => $columnas[6],
+                        'salidapm'  => $columnas[7],
+                        'retrazo' => '0', 'observacion' => '0', 'aceptado' => '0',
+                    ]);
+                }
 
-                    'id_biometrico' => $columnas[0],
-                    'nombre_biometrico' => $columnas[1],
-
-                    'fecha' => $fecha,
-                    'ingresoam' => $columnas[4],
-                    'salidaam'  => $columnas[5],
-                    'ingresopm' => $columnas[6],
-                    'salidapm'  => $columnas[7],
-                    'retrazo' => '0',
-                    'observacion' => '0',
-                    'aceptado' => '0',
-                ]);
             } catch (\Exception $e) {
                 echo 'Error al insertar en la tabla Historia: ' . $e->getMessage();
             }
         }
+
         $personas = Persona::join('horarios', 'personas.id_horario', '=', 'horarios.id')
-                            ->join('cargos', 'personas.id_cargo', '=', 'cargos.id')
-                            ->select('personas.*', 'horarios.*', 'cargos.*')
-                            ->get();
+                        ->join('cargos', 'personas.id_cargo', '=', 'cargos.id')
+                        ->select('personas.*', 'horarios.*', 'cargos.*')->get();
+
         foreach($personas as $persona){
-            $valores = [
-                'id_usuario' => \Auth::user()->id,
-                'id_persona' => $persona->id,
-                'persona'    => $persona->nombre." ".$persona->paterno." ".$persona->materno,
-                'id_horario' => $persona->id_horario,
-                'horario'    => $persona->horario,
-                'id_cargo'   => $persona->id_cargo,
-                'cargo'      => $persona->cargo,
-            ];
-            
-            Historia::where('id_biometrico', $persona->id_biometrico)->update($valores);
+            $historias = Historia::where('id_biometrico', $persona->id_biometrico)
+                                ->where('fecha', '>=', '2023-01-01') // Ajusta la fecha según tu necesidad
+                                ->get();
+            $retrazo = $persona->retrazo;
+            foreach ($historias as $historia) {
+                // Calcular el retraso acumulado
+                $ingresoam = !empty($historia->ingresoam) && $historia->ingresoam !== '0:00' ? new \DateTime($historia->ingresoam) : null;
+                $ingresopm = !empty($historia->ingresopm) && $historia->ingresopm !== '0:00' ? new \DateTime($historia->ingresopm) : null;
+                $horarioIngresoAM = !empty($persona->ingresoam) ? new \DateTime($persona->ingresoam) : null;
+                $horarioIngresoPM = !empty($persona->ingresopm) ? new \DateTime($persona->ingresopm) : null;
+
+                $retrazoAM = $ingresoam && $horarioIngresoAM ? max(0, $horarioIngresoAM->diff($ingresoam)->i) : -1;
+                $retrazoPM = $ingresopm && $horarioIngresoPM ? max(0, $horarioIngresoPM->diff($ingresopm)->i) : -1;
+
+                $retrazoTotal = 0;
+                if ($retrazoAM == -1 || $retrazoPM == -1) {
+                    $retrazoTotal = -1;
+                } else {
+                    $retrazoTotal = $retrazoAM + $retrazoPM;
+                }
+
+                // Comparar con el retraso permitido
+                $retrazoPermitido = $persona->retrazo;
+                $retrazoExcedido = $retrazoTotal > $retrazoPermitido ? $retrazoTotal - $retrazoPermitido : 0;
+
+                $valores = [
+                    'id_usuario' => \Auth::user()->id,
+                    'id_persona' => $persona->id,
+                    'persona'    => $persona->nombre." ".$persona->paterno." ".$persona->materno,
+                    'id_horario' => $persona->id_horario,
+                    'horario'    => $persona->horario,
+                    'id_cargo'   => $persona->id_cargo,
+                    'cargo'      => $persona->cargo,
+                    'retrazo'    => $retrazoTotal == -1 ? -1 : $retrazoExcedido,
+                    'observacion'  => $retrazoTotal == -1 ? "Sin Asistencia" : ($retrazoTotal < $retrazo ? "Normal" : "retrazo") ,
+                ];            
+                Historia::where('id', $historia->id)->update($valores);
+            }
         }
+
         return redirect('historias');
     }
+
 
     public function reporte(Request $request){
         $idPersona = $request->input('persona');

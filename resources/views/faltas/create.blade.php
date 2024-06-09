@@ -11,7 +11,6 @@
     </ul>
 
 
-
     <form action="{{ route('faltas.store') }}" method="post">
         @csrf
         <div id="myTabContent" class="tab-content custom-product-edit">

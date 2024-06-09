@@ -74,5 +74,16 @@ class UserController extends Controller
             ->with('success', 'Actualizacion del estado del usuario');
         */
     }
+
+    public function clave(){
+        return view('auth.change') ;
+
+    }
+
+    public function cambiar(Request $request){
+        return $request->all();
+    }
     
 }
+
+

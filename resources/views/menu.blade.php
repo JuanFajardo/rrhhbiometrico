@@ -1,13 +1,12 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+            <a href="index.html"><img class="main-logo" src="{{asset('assets/img/logo/logo.jpg')}}" width="100" alt="" /></a>
             <strong><img src="{{asset('assets/img/logo/logosn.png')}}" alt="" /></strong>
         </div>
         <div class="nalika-profile">
             <div class="profile-dtl">
-                <a href="#"><img src="{{asset('assets/img/notification/4.jpg')}}" alt="" /></a>
-                <h2>Lakian Das</h2>
+                <h2>Seduca Betanzos</h2>
             </div>
             
         </div>
